@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Upload } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
-import DonationCard from '../components/DonationCard'; // adjust the path if needed
+
 
 const AddDonation = () => {
   const [title, setTitle] = useState('');
@@ -9,7 +9,6 @@ const AddDonation = () => {
   const [description, setDescription] = useState('');
   const [location, setLocation] = useState('');
   const [images, setImages] = useState([]);
-  const [selectedId, setSelectedId] = useState(null);
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
