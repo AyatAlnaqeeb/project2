@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Send, Search } from 'lucide-react';
-import Profile from './Profile';
+import Profile from './Profile'; // Just a test change to trigger a commit
+
 import donateimage3 from '../assets/donateimage3.png'
 const Chat = () => {
   const [message, setMessage] = useState('');
