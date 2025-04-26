@@ -174,10 +174,9 @@ li:hover {
 @media (min-width: 1200px) {
   .chat-page {
     width: 100%;
-   padding:0 70px;
-   margin: 0 70px 0 0;
+   padding:10px;
+   margin: 0;
    display: block;
-  
   }
 }
 
@@ -191,7 +190,7 @@ li:hover {
 }
 
 .navbar .btn-primary:hover {
-  background-color: #0b5ed7;
+  background-color: #669ff6;
 }
 
 
@@ -255,7 +254,7 @@ input:hover {
 
 /*btn*/
 .btn {
-  background-color:#9ACBD0;
+  background-color:#60B5FF;
   color:black;
   border: none;
   padding: 12px 24px;

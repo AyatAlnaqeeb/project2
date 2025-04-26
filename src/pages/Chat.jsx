@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Send, Search } from 'lucide-react';
-import Profile from './Profile'; // Just a test change to trigger a commit
-
+import Profile from './Profile'; 
 import donateimage3 from '../assets/donateimage3.png'
 const Chat = () => {
   const [message, setMessage] = useState('');
@@ -9,6 +8,10 @@ const Chat = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedConversation, setSelectedConversation] = useState(null);
   const [showProfile, setShowProfile] = useState(false);
+
+  const toggleProfile = () => {
+    setShowProfile((prev) => !prev);
+  };
 
   const conversations = [
     { id: 1, name: 'John Doe', lastMessage: 'Last message from the conversation...', time: '2 hours ago' },
@@ -42,7 +45,7 @@ const Chat = () => {
   return (
     < >
       <div className="d-flex justify-content-center align-items-center  position-relative chat-page vh-100 "
-       style={{backgroundColor:'#3A59D1'}}>
+       style={{backgroundColor:'#7AC6D2'}}>
         <div className="container-fluid row  border shadow-lg rounded bg-white">
           {/* Sidebar */}
           <div
@@ -192,11 +195,17 @@ const Chat = () => {
           className="position-absolute top-0 end-0 bg-white border-start shadow"
           style={{
             height: '100%',
-            width: '300px',
+            width: '50%',
             zIndex: 10,
           }}
+          onClick={toggleProfile}
         >
-          <Profile onClose={() => setShowProfile(false)} />
+         <div className="d-flex justify-content-end p-2">
+      <button className="btn btn-sm btn-outline-secondary" onClick={toggleProfile}>
+        ✕
+      </button>
+    </div>
+    <Profile onClick={toggleProfile} />
         </div>
       )}
    </div>

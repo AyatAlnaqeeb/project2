@@ -56,7 +56,7 @@ const AddDonation = () => {
 
   return (
     <>
-      <div className="d-flex justify-content-center align-items-center py-5" style={{ background: '#f4f6f9' }}>
+      <div className="d-flex justify-content-center align-items-center py-5" style={{ background: '#6DE1D2' }}>
         <div className="card shadow-lg" style={{ maxWidth: '600px', width: '100%' }}>
           <div className="card-body">
             <h2 className="card-title mb-4 text-center">Add New Donation</h2>
