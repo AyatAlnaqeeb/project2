@@ -80,18 +80,7 @@ const Auth = () => {
             />
           </div>
 
-          <div className="mb-3">
-            <label htmlFor="password" className="form-label" style={{ fontSize: "16px", fontFamily: "Arial, sans-serif", color: "#808080" }}>Password</label>
-            <input
-              type="password"
-              className="form-control"
-              id="password"
-              placeholder="Enter your password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-            />
-          </div>
+          
 
           {!isSignIn && (
             <>
@@ -122,6 +111,18 @@ const Auth = () => {
                   ))}
                 </select>
               </div>
+              <div className="mb-3">
+            <label htmlFor="password" className="form-label" style={{ fontSize: "16px", fontFamily: "Arial, sans-serif", color: "#808080" }}>Password</label>
+            <input
+              type="password"
+              className="form-control"
+              id="password"
+              placeholder="Enter your password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+          </div>
               <div className="mb-3">
                 <label htmlFor="confirmPassword" className="form-label" style={{ fontSize: "16px", fontFamily: "Arial, sans-serif", color: "#808080" }}>Confirm Password</label>
                 <input
