@@ -36,7 +36,7 @@ const Profile= () => {
   const [activeTab, setActiveTab] = useState('about');
   const [mood, setMood] = useState('😊');
   const [quote, setQuote] = useState('');
-  const [coverPhoto, setCoverPhoto] = useState(null);
+  const [coverPhoto, setCoverPhoto] = useState('/src/assets/relax.png');
 
   const [profile, setProfile] = useState({
     name: 'Ayat',
@@ -119,7 +119,9 @@ const Profile= () => {
   const profileCompletion = Math.min(100, Math.floor((completedFields / 7) * 100));
 
   return (
-    <div className="container py-4 fade-in">
+    <div className="container py-4 fade-in" style={{ minHeight: 'calc(100vh - 50px)', paddingBottom: '80px' }}>
+
+
       <div className="d-flex justify-content-between align-items-center mb-3 sticky-header">
         <div className="d-flex align-items-center gap-3">
           <span className="fs-4">{mood}</span>
@@ -161,8 +163,8 @@ const Profile= () => {
         )}
       </div>
 
-      <div className="card glass-card shadow-sm mb-4">
-        <div className="card-body">
+      <div className="card glass-card shadow-sm mb-5" style={{ minHeight: '60vh' }}>
+      <div className="card-body" style={{ minHeight: '50vh' }}>
           <div className="d-flex align-items-center mb-4">
             <div className="position-relative me-4">
               <img

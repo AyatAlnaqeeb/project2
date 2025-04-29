@@ -1,5 +1,3 @@
-// File: src/pages/Auth.js
-
 import React, { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import don from '../assets/don.jpg'; // Import the image from the assets folder
@@ -44,6 +42,7 @@ const Auth = () => {
       }}
     >
       <div className="p-4 w-100" style={{ maxWidth: '450px', backgroundColor: "rgba(255, 255, 255, 0.23)", borderRadius: '10px', boxShadow: "0 4px 8px rgb(0, 0, 0)" }}>
+        {/* Conditional Header Text */}
         <h4 className="text-center mb-3" style={{ fontSize: "30px", fontFamily: "Arial, sans-serif", color:"#808080" }}>
           {isSignIn ? "Welcome Back" : "Create Account"}
         </h4>
@@ -51,6 +50,7 @@ const Auth = () => {
           {isSignIn ? "Sign in to continue to Give & Gather" : "Join our community and start sharing kindness"}
         </h5>
 
+        {/* Form */}
         <form onSubmit={handleSubmit}>
           {!isSignIn && (
             <div className="mb-3">
@@ -79,9 +79,8 @@ const Auth = () => {
               required
             />
           </div>
-
           
-
+          
           {!isSignIn && (
             <>
               <div className="mb-3">
@@ -96,6 +95,7 @@ const Auth = () => {
                   required
                 />
               </div>
+
               <div className="mb-3">
                 <label htmlFor="country" className="form-label" style={{ fontSize: "16px", fontFamily: "Arial, sans-serif", color: "#808080" }}>Governorate</label>
                 <select
@@ -111,7 +111,12 @@ const Auth = () => {
                   ))}
                 </select>
               </div>
-              <div className="mb-3">
+            </>
+          )}
+
+
+          {/* Password field will always appear for both Sign In and Sign Up */}
+          <div className="mb-3">
             <label htmlFor="password" className="form-label" style={{ fontSize: "16px", fontFamily: "Arial, sans-serif", color: "#808080" }}>Password</label>
             <input
               type="password"
@@ -123,20 +128,23 @@ const Auth = () => {
               required
             />
           </div>
-              <div className="mb-3">
-                <label htmlFor="confirmPassword" className="form-label" style={{ fontSize: "16px", fontFamily: "Arial, sans-serif", color: "#808080" }}>Confirm Password</label>
-                <input
-                  type="password"
-                  className="form-control"
-                  id="confirmPassword"
-                  placeholder="Confirm Password"
-                  value={confirmPassword}
-                  onChange={(e) => setConfirmPassword(e.target.value)}
-                  required
-                />
-              </div>
-            </>
+          {!isSignIn && (
+            <div className="mb-3">
+              <label htmlFor="confirmPassword" className="form-label" style={{ fontSize: "16px", fontFamily: "Arial, sans-serif", color: "#808080" }}>Confirm Password</label>
+              <input
+                type="password"
+                className="form-control"
+                id="confirmPassword"
+                placeholder="Confirm Password"
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
+                required
+              />
+            </div>
           )}
+
+          
+         
 
           <button type="submit" className="btn btn-primary w-100" style={{ fontSize: "16px", fontFamily: "Arial, sans-serif" }}>
             {isSignIn ? "Sign In" : "Create Account"}
