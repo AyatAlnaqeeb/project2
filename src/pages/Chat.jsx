@@ -194,9 +194,10 @@ const Chat = () => {
   <div
     className="position-absolute top-0 end-0 bg-white border-start shadow"
     style={{
-      height: '100%',
+      height: '100vh',
       width: '50%',
       zIndex: 10,
+      overflowY:'auto',
     }}
     onClick={toggleProfile} // Optional: to close when clicking outside inner box
   >

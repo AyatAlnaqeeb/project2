@@ -120,7 +120,7 @@ const Profile= () => {
 
   return (
     <div className="container py-4 fade-in">
-      <div className="d-flex justify-content-between align-items-center mb-3 sticky-header">
+      <div className="d-flex justify-content-between align-items-center mb-3 sticky-header ">
         <div className="d-flex align-items-center gap-3">
           <span className="fs-4">{mood}</span>
           <select value={mood} onChange={(e) => setMood(e.target.value)} className="form-select w-auto">
@@ -139,57 +139,71 @@ const Profile= () => {
         </div>
       </div>
 
-      <div className="text-center mb-4">
+      <div className="text-center mb-4 ">
         <p className="fst-italic fs-3 fw-semibold text-primary text-center">“{quote}”</p>
       </div>
 
-      <div className="cover-photo-wrapper position-relative mb-4">
-        <div
-          className="cover-photo rounded"
-          style={{
-            height: '200px',
-            backgroundImage: `url(${coverPhoto || 'https://via.placeholder.com/800x200'})`,
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-          }}
-        ></div>
-        {isEditing && (
-          <label className="position-absolute top-0 end-0 m-2 btn btn-light btn-sm shadow" style={{ cursor: 'pointer' }}>
-            Change Cover
-            <input type="file" accept="image/*" onChange={handleCoverPhotoChange} style={{ display: 'none' }} />
-          </label>
-        )}
-      </div>
 
-      <div className="card glass-card shadow-sm mb-4">
+      <div className="card glass-card shadow-sm mb-4 vh-100">
+      <div className="cover-photo-wrapper position-relative mb-5" style={{ margin: 0 }}>
+  {/* Cover Photo */}
+  <div
+    className="cover-photo rounded"
+    style={{
+      height: '200px',
+      backgroundImage: `url(${coverPhoto || 'https://via.placeholder.com/800x200'})`,
+      backgroundSize: 'cover',
+      backgroundPosition: 'center',
+      width: '100%',
+      margin: 0,
+      padding: 0,
+      borderTopLeftRadius: '0px',
+      borderTopRightRadius: '0px',
+    }}
+  ></div>
+
+  {/* Change Cover Button */}
+  {isEditing && (
+    <label
+      className="position-absolute start-0 top-0 end-0  btn btn-light btn-sm shadow"
+      style={{ cursor: 'pointer' }}
+    >
+      Change Cover
+      <input
+        type="file"
+        accept="image/*"
+        onChange={handleCoverPhotoChange}
+        style={{ display: 'none' }}
+      />
+    </label>
+  )}
+
+  {/* Profile Photo (overlapping the bottom of cover) */}
+  <div
+  className="position-absolute start-0 translate-middle-y"
+  style={{
+    left: '3rem', // optional spacing from the left edge
+    bottom: '-50px',
+    zIndex: 2,
+  }}
+>
+
+    <img
+      src={editedProfile.profileImage}
+      alt="Profile"
+      className="rounded-circle border border-3 border-white shadow"
+      width={100}
+      height={100}
+      style={{ objectFit: 'cover' }}
+    />
+  </div>
+</div>
+
+{/* Card Body with top padding to make room for the overlapping profile image */}
         <div className="card-body">
-          <div className="d-flex align-items-center mb-4">
-            <div className="position-relative me-4">
-              <img
-                src={editedProfile.profileImage}
-                alt="Profile"
-                className="rounded-circle border border-3 shadow-sm"
-                width={100}
-                height={100}
-                style={{ objectFit: 'cover' }}
-              />
-              {isEditing && (
-                <label
-                  htmlFor="profileImageUpload"
-                  className="position-absolute bottom-0 end-0 bg-white rounded-circle p-1 border shadow"
-                  style={{ cursor: 'pointer' }}
-                >
-                  <Camera size={16} className="text-primary" />
-                  <input
-                    type="file"
-                    id="profileImageUpload"
-                    accept="image/*"
-                    onChange={handleImageChange}
-                    style={{ display: 'none' }}
-                  />
-                </label>
-              )}
-            </div>
+        <div className="d-flex align-items-center mb-4">
+  <div className="me-4" style={{ width: '100px', height: '100px' }}></div> {/* spacer */}
+
             <div className="flex-grow-1">
               <h2 className="fw-bold mb-0">{profile.name}</h2>
               <div className="d-flex gap-2 mt-2">
