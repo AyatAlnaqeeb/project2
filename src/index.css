@@ -198,7 +198,8 @@ li:hover {
 .foot{ 
   color: black;
 font-size: large;
-position: sticky;
+position: fixed;
+bottom: 0;
 }
 
 /*input styling*/

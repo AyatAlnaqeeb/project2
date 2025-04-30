@@ -4,13 +4,13 @@ import herovideo from '../assets/herovideo.mp4'
 
 const Footer = () => {
   return (
-    <footer className="foot shadow-sm mt-auto position-relative overflow-hidden end-0">
+    <footer className="foot shadow-sm  start-0 end-0">
       <video
             autoPlay
             loop
             muted
             playsInline
-            className="position-absolute top-0 start-0 w-100 h-100"
+            className="position-absolute end-0 top-0 start-0 w-100 h-100"
             style={{ objectFit: 'cover', zIndex: -1 }}
           >
             <source src={herovideo} type="video/mp4" />
