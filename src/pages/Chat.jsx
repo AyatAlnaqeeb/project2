@@ -191,23 +191,32 @@ const Chat = () => {
 
       {/* Profile Drawer */}
       {showProfile && (
-        <div
-          className="position-absolute top-0 end-0 bg-white border-start shadow"
-          style={{
-            height: '100%',
-            width: '50%',
-            zIndex: 10,
-          }}
+  <div
+    className="position-absolute top-0 end-0 bg-white border-start shadow"
+    style={{
+      height: '100%',
+      width: '50%',
+      zIndex: 10,
+    }}
+    onClick={toggleProfile} // Optional: to close when clicking outside inner box
+  >
+    <div
+      onClick={(e) => e.stopPropagation()} // Prevents propagation
+      className="h-100"
+    >
+      <div className="d-flex justify-content-end p-2">
+        <button
+          className="btn btn-sm btn-outline-secondary"
           onClick={toggleProfile}
         >
-         <div className="d-flex justify-content-end p-2">
-      <button className="btn btn-sm btn-outline-secondary" onClick={toggleProfile}>
-        ✕
-      </button>
+          ✕
+        </button>
+      </div>
+      <Profile onClick={toggleProfile} />
     </div>
-    <Profile onClick={toggleProfile} />
-        </div>
-      )}
+  </div>
+)}
+
    </div>
  
     </>
