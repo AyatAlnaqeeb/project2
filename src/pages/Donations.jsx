@@ -20,16 +20,16 @@ const STATIC_DONATIONS = [
     title: "Maternity Clothes Bundle",
     category: "nursing",
     description: "Complete maternity wardrobe, sizes S-M. Includes dresses, pants, and tops suitable for all trimesters",
-    location: "Portland, OR",
+    location: "Amman",
     image: "https://images.unsplash.com/photo-1522771930-78848d9293e8?auto=format&fit=crop&q=80",
     timeAgo: "1 day ago"
   },
   {
     id: 2,
-    title: "Breast Pump & Supplies",
+    title: "Baby Strollers",
     category: "nursing",
-    description: "Medela Pump In Style (used for 3 months), includes new unused accessories and storage bags",
-    location: "Denver, CO",
+    description: "good strollers",
+    location: "Zarqa",
     image: "https://images.unsplash.com/photo-1584285418616-f37ae2fb3bdb?auto=format&fit=crop&q=80",
     timeAgo: "3 days ago"
   },
@@ -38,7 +38,7 @@ const STATIC_DONATIONS = [
     title: "Nursing Pillows Set",
     category: "nursing",
     description: "Two gently used nursing pillows with extra covers, perfect for comfortable feeding",
-    location: "Minneapolis, MN",
+    location: "Ajloun",
     image: "https://images.unsplash.com/photo-1594824476967-48c8b964273f?auto=format&fit=crop&q=80",
     timeAgo: "5 days ago"
   },
@@ -47,7 +47,7 @@ const STATIC_DONATIONS = [
     title: "Children's Winter Collection",
     category: "clothes",
     description: "Warm winter clothes including jackets, sweaters, and boots for children aged 3-6 years",
-    location: "Brooklyn, New York",
+    location: "Madaba",
     image: "https://images.unsplash.com/photo-1523381210434-271e8be1f52b?auto=format&fit=crop&q=80",
     timeAgo: "2 days ago"
   },
@@ -56,7 +56,7 @@ const STATIC_DONATIONS = [
     title: "Gaming Console",
     category: "electronics",
     description: "Slightly used PlayStation 4 with two controllers and 5 games included",
-    location: "San Francisco, CA",
+    location: "Balqa",
     image: "https://images.unsplash.com/photo-1486401899868-0e435ed85128?auto=format&fit=crop&q=80",
     timeAgo: "1 day ago"
   },
@@ -65,7 +65,7 @@ const STATIC_DONATIONS = [
     title: "Dining Room Set",
     category: "furniture",
     description: "Solid wood dining table with 6 chairs, excellent condition",
-    location: "Austin, Texas",
+    location: "Irbid",
     image: "https://images.unsplash.com/photo-1617806118233-18e1de247200?auto=format&fit=crop&q=80",
     timeAgo: "3 days ago"
   },
@@ -74,7 +74,7 @@ const STATIC_DONATIONS = [
     title: "Pregnancy Support Kit",
     category: "nursing",
     description: "Pregnancy pillow, belly support band, and pregnancy books in excellent condition",
-    location: "Miami, FL",
+    location: "Amman",
     image: "https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?auto=format&fit=crop&q=80",
     timeAgo: "6 days ago"
   },
@@ -83,7 +83,7 @@ const STATIC_DONATIONS = [
     title: "Baby Essentials Bundle",
     category: "nursing",
     description: "Newborn essentials including bottles, sterilizer, and nursing covers - all gently used",
-    location: "Atlanta, GA",
+    location: "Jerash",
     image: "https://images.unsplash.com/photo-1596461404969-9ae70f2830c1?auto=format&fit=crop&q=80",
     timeAgo: "1 week ago"
   },
@@ -92,7 +92,7 @@ const STATIC_DONATIONS = [
     title: "Non-Perishable Food Items",
     category: "food",
     description: "Canned goods, pasta, and other non-perishable items for families in need",
-    location: "Chicago, IL",
+    location: "Ma'an",
     image: "https://images.unsplash.com/photo-1488027178343-481677c929c3?auto=format&fit=crop&q=80",
     timeAgo: "12 hours ago"
   },
@@ -101,7 +101,7 @@ const STATIC_DONATIONS = [
     title: "Professional Suits",
     category: "clothes",
     description: "Three gently used business suits, perfect for job interviews. Sizes 40R-42R",
-    location: "Seattle, WA",
+    location: "Karak",
     image: "https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&q=80",
     timeAgo: "4 days ago"
   }

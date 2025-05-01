@@ -14,9 +14,9 @@ const Chat = () => {
   };
 
   const conversations = [
-    { id: 1, name: 'John Doe', lastMessage: 'Last message from the conversation...', time: '2 hours ago' },
-    { id: 2, name: 'Jane Smith', lastMessage: 'Is this item available?', time: '1 hour ago' },
-    { id: 3, name: 'Mike Johnson', lastMessage: 'Hey, how are you?', time: '30 minutes ago' },
+    { id: 1, name: 'Ayat Mazin', lastMessage: 'Last message from the conversation...', time: '2 hours ago' },
+    { id: 2, name: 'Sara Saleh', lastMessage: 'Is this item available?', time: '1 hour ago' },
+    { id: 3, name: 'Raghad Zghool', lastMessage: 'Hey, how are you?', time: '30 minutes ago' },
   ];
 
   const filteredConversations = conversations.filter((conversation) =>
