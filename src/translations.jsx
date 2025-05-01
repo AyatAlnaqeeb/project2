@@ -1,6 +1,7 @@
 const translations = {
   en: {
     welcome: "Welcome to Give & Gather",
+    donateNow: "Donate Now",
     donations: "Donations",
     messages: "Messages",
     settings: "Settings",
@@ -9,6 +10,7 @@ const translations = {
   },
   ar: {
     welcome: "أهلاً بك في أعطِ واجمع",
+    donateNow: "تبرع الآن",
     donations: "التبرعات",
     messages: "الرسائل",
     settings: "الإعدادات",

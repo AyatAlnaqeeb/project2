@@ -200,6 +200,7 @@ li:hover {
 font-size: large;
 position: fixed;
 bottom: 0;
+height: fit-content;
 }
 
 /*input styling*/
@@ -503,4 +504,106 @@ input:hover {
     color: #0d6efd;
     text-decoration: underline;
   }
-  
+  /* About.css */
+
+.about-page {
+  background: linear-gradient(135deg, #f0f4f8, #ffffff);
+  border-radius: 12px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.05);
+  padding: 3rem;
+  animation: fadeSlideUp 0.8s ease-out;
+}
+
+.fade-in {
+  opacity: 0;
+  animation: fadeIn 1s forwards;
+  animation-delay: 0.3s;
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.blockquote {
+  font-style: italic;
+  font-size: 1.25rem;
+  border-left: 4px solid #0d6efd;
+  padding-left: 1rem;
+  margin-top: 2rem;
+}
+
+.offerings-page {
+  background: linear-gradient(to bottom right, #e6fff5, #ffffff);
+  border-radius: 12px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.05);
+  padding: 3rem;
+  animation: fadeSlideUp 0.8s ease-out;
+}
+
+.fade-in {
+  opacity: 0;
+  animation: fadeIn 1s forwards;
+  animation-delay: 0.3s;
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+/* Contact.css */
+
+.contact-page {
+  background: linear-gradient(to bottom right, #ffe6e6, #ffffff);
+  border-radius: 12px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.05);
+  padding: 3rem;
+  animation: fadeSlideUp 0.8s ease-out;
+}
+
+.fade-in {
+  opacity: 0;
+  animation: fadeIn 1s forwards;
+  animation-delay: 0.3s;
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

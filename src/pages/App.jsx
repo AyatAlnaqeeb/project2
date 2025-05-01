@@ -9,6 +9,9 @@ import Footer from '../components/Footer';
 import Home from './Home';
 import SettingsPage from './SettingsPage';
 import Profile from './Profile';
+import About from './About';
+import Offerings from './Offerings';
+import Contact from './Contact';
 
 function App() {
   const [theme, setTheme] = useState(() => localStorage.getItem('theme') || 'light');
@@ -35,9 +38,12 @@ function App() {
             <Route path="/auth" element={<Auth />} />
             <Route path="/donations" element={<Donations />} />
             <Route path="/add-donation" element={<AddDonation />} />
-            <Route path="/profile" element={<Profile/>} />
+            <Route path="/profile" element={<Profile />} />
             <Route path="/chat" element={<Chat />} />
             <Route path="/settings" element={<SettingsPage setTheme={setTheme} setLanguage={setLanguage} />} />
+            <Route path="/about" element={<About/>} />
+            <Route path="/offerings" element={<Offerings/>} />
+            <Route path="/contact" element={<Contact/>} />
           </Routes>
         </main>
 

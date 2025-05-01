@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState ,useEffect} from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { Heart, Gift, UserCircle, MessageCircle, Bell, LogIn } from 'lucide-react';
+import { Heart, Gift, UserCircle, MessageCircle, Bell, LogIn, HeartHandshake } from 'lucide-react';
 import { Dropdown } from 'react-bootstrap';
 import { Settings } from 'lucide-react';
 import translations from '../translations';
@@ -11,14 +11,16 @@ const Navbar = () => {
   const t = translations[lang];
   const navigate = useNavigate();
 
-  window.addEventListener('scroll', function() {
-    const navbar = document.querySelector('.navbar');
-    if (window.scrollY > 0) {
-      navbar.classList.add('scrolled');
-    } else {
-      navbar.classList.remove('scrolled');
-    }
-  });
+  useEffect(() => {
+    const handleScroll = () => {
+      const navbar = document.querySelector('.navbar');
+      if (window.scrollY > 0) navbar.classList.add('scrolled');
+      else navbar.classList.remove('scrolled');
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+  
 
   return (
     <nav className="nav navbar navbar-expand-lg navbar-light bg-light shadow-sm ">
@@ -44,6 +46,13 @@ const Navbar = () => {
                 <span>{t.donations}</span>
               </Link>
             </li>
+            <li className="nav-item pe-3 py-3">
+              <Link to="/add-donation" className="d-flex align-items-center text-decoration-none text-black-50">
+                <HeartHandshake className="me-1" size={20} />
+                <span>{t.donateNow || "Donate Now"}</span>
+              </Link>
+            </li>
+
             <li className="nav-item pe-3 py-3">
               <Link to="/chat" className="d-flex align-items-center text-decoration-none text-black-50">
                 <MessageCircle className="me-1" size={18} />
