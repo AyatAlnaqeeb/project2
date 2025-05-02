@@ -1,7 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { Upload } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
-
 
 const AddDonation = () => {
   const [title, setTitle] = useState('');
@@ -10,6 +9,14 @@ const AddDonation = () => {
   const [location, setLocation] = useState('');
   const [images, setImages] = useState([]);
   const navigate = useNavigate();
+
+  // Cleanup object URLs to prevent memory leaks
+  useEffect(() => {
+    return () => {
+      // Clean up object URLs on component unmount or when images change
+      images.forEach((file) => URL.revokeObjectURL(file.preview));
+    };
+  }, [images]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -22,11 +29,9 @@ const AddDonation = () => {
       category,
       description,
       location,
-      image: URL.createObjectURL(images[0]), // Use first image
+      image: images[0].preview, // Use first image
       timeAgo: 'Just now',
     };
-
-    // Optionally: Save to localStorage or global state here
 
     // Save donation to localStorage
     const existing = JSON.parse(localStorage.getItem('donations')) || [];
@@ -42,17 +47,24 @@ const AddDonation = () => {
     setLocation('');
     setImages([]);
     document.getElementById('fileInput').value = null;
-
   };
 
+  const handleFileChange = useCallback((e) => {
+    const filesWithPreview = Array.from(e.target.files).map((file) => ({
+      ...file,
+      preview: URL.createObjectURL(file),
+    }));
+    setImages((prev) => [...prev, ...filesWithPreview]);
+  }, []);
 
-  const handleFileChange = (e) => {
-    setImages((prev) => [...prev, ...Array.from(e.target.files)]);
-  };
-
-  const handleDeleteImage = (index) => {
+  const handleDeleteImage = useCallback((index) => {
+    const imageToDelete = images[index];
+    URL.revokeObjectURL(imageToDelete.preview); // Clean up URL
     setImages((prevImages) => prevImages.filter((_, i) => i !== index));
-  };
+  }, [images]);
+
+  const categoryOptions = ["clothes", "electronics", "furniture", "food", "other"];
+  const locationOptions = ["amman", "irbid", "zarqa", "aqaba", "ajloun", "jerash", "mafraq", "balqa", "karak", "tafilah", "ma'an", "madaba"];
 
   return (
     <>
@@ -84,11 +96,9 @@ const AddDonation = () => {
                   required
                 >
                   <option value="">Select a category</option>
-                  <option value="clothes">Clothes</option>
-                  <option value="electronics">Electronics</option>
-                  <option value="furniture">Furniture</option>
-                  <option value="food">Food</option>
-                  <option value="other">Other</option>
+                  {categoryOptions.map((opt) => (
+                    <option key={opt} value={opt}>{opt.charAt(0).toUpperCase() + opt.slice(1)}</option>
+                  ))}
                 </select>
               </div>
 
@@ -115,20 +125,9 @@ const AddDonation = () => {
                   required
                 >
                   <option value="">Select a location</option>
-                  <option value="amman">Amman</option>
-                  <option value="irbid">Irbid</option>
-                  <option value="zarqa">Zarqa</option>
-                  <option value="aqaba">Aqaba</option>
-                  <option value="ajloun">Ajloun</option>
-                  <option value="jerash">Jerash</option>
-                  <option value="mafraq">Mafraq</option>
-                  <option value="balqa">Balqa</option>
-                  <option value="karak">Karak</option>
-                  <option value="tafilah">Tafilah</option>
-                  <option value="ma'an">Ma'an</option>
-                  <option value="madaba">Madaba</option>
-
-
+                  {locationOptions.map((opt) => (
+                    <option key={opt} value={opt}>{opt.charAt(0).toUpperCase() + opt.slice(1)}</option>
+                  ))}
                 </select>
               </div>
 

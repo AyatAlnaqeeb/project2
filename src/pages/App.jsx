@@ -1,17 +1,18 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, Suspense, lazy } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Auth from './Auth';
-import Donations from './Donations';
-import AddDonation from './AddDonations';
-import Chat from './Chat';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
-import Home from './Home';
-import SettingsPage from './SettingsPage';
-import Profile from './Profile';
-import About from './About';
-import Offerings from './Offerings';
-import Contact from './Contact';
+
+const Auth = lazy(() => import('./Auth'));
+const Donations = lazy(() => import('./Donations'));
+const AddDonation = lazy(() => import('./AddDonations'));
+const Chat = lazy(() => import('./Chat'));
+const Home = lazy(() => import('./Home'));
+const SettingsPage = lazy(() => import('./SettingsPage'));
+const Profile = lazy(() => import('./Profile'));
+const About = lazy(() => import('./About'));
+const Offerings = lazy(() => import('./Offerings'));
+const Contact = lazy(() => import('./Contact'));
 
 function App() {
   const [theme, setTheme] = useState(() => localStorage.getItem('theme') || 'light');
@@ -29,22 +30,23 @@ function App() {
   return (
     <Router>
       <div className="min-h-screen flex flex-col bg-gray-50">
-        {/* Pass theme and language to Navbar if needed */}
         <Navbar language={language} setLanguage={setLanguage} />
 
         <main className="flex-grow container mx-auto px-4 py-8">
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/auth" element={<Auth />} />
-            <Route path="/donations" element={<Donations />} />
-            <Route path="/add-donation" element={<AddDonation />} />
-            <Route path="/profile" element={<Profile />} />
-            <Route path="/chat" element={<Chat />} />
-            <Route path="/settings" element={<SettingsPage setTheme={setTheme} setLanguage={setLanguage} />} />
-            <Route path="/about" element={<About/>} />
-            <Route path="/offerings" element={<Offerings/>} />
-            <Route path="/contact" element={<Contact/>} />
-          </Routes>
+          <Suspense fallback={<div>Loading...</div>}>
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/auth" element={<Auth />} />
+              <Route path="/donations" element={<Donations />} />
+              <Route path="/add-donation" element={<AddDonation />} />
+              <Route path="/profile" element={<Profile />} />
+              <Route path="/chat" element={<Chat />} />
+              <Route path="/settings" element={<SettingsPage setTheme={setTheme} setLanguage={setLanguage} />} />
+              <Route path="/about" element={<About />} />
+              <Route path="/offerings" element={<Offerings />} />
+              <Route path="/contact" element={<Contact />} />
+            </Routes>
+          </Suspense>
         </main>
 
         <Footer />
@@ -53,4 +55,4 @@ function App() {
   );
 }
 
-export default App; 
+export default App;

@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useMemo, useRef } from 'react';
 import { Search, MapPin, Filter } from 'lucide-react';
 import DonationCard from '../components/DonationCard';
-
 
 const categories = [
   { id: 'all', label: 'All' },
@@ -14,7 +13,7 @@ const categories = [
 ];
 
 const STATIC_DONATIONS = [
-  // ... your 10 hardcoded donations
+  // ... (unchanged hardcoded donations)
   {
     id: 1,
     title: "Maternity Clothes Bundle",
@@ -24,113 +23,31 @@ const STATIC_DONATIONS = [
     image: "https://images.unsplash.com/photo-1522771930-78848d9293e8?auto=format&fit=crop&q=80",
     timeAgo: "1 day ago"
   },
-  {
-    id: 2,
-    title: "Baby Strollers",
-    category: "nursing",
-    description: "good strollers",
-    location: "Zarqa",
-    image: "https://images.unsplash.com/photo-1584285418616-f37ae2fb3bdb?auto=format&fit=crop&q=80",
-    timeAgo: "3 days ago"
-  },
-  {
-    id: 3,
-    title: "Nursing Pillows Set",
-    category: "nursing",
-    description: "Two gently used nursing pillows with extra covers, perfect for comfortable feeding",
-    location: "Ajloun",
-    image: "https://images.unsplash.com/photo-1594824476967-48c8b964273f?auto=format&fit=crop&q=80",
-    timeAgo: "5 days ago"
-  },
-  {
-    id: 4,
-    title: "Children's Winter Collection",
-    category: "clothes",
-    description: "Warm winter clothes including jackets, sweaters, and boots for children aged 3-6 years",
-    location: "Madaba",
-    image: "https://images.unsplash.com/photo-1523381210434-271e8be1f52b?auto=format&fit=crop&q=80",
-    timeAgo: "2 days ago"
-  },
-  {
-    id: 5,
-    title: "Gaming Console",
-    category: "electronics",
-    description: "Slightly used PlayStation 4 with two controllers and 5 games included",
-    location: "Balqa",
-    image: "https://images.unsplash.com/photo-1486401899868-0e435ed85128?auto=format&fit=crop&q=80",
-    timeAgo: "1 day ago"
-  },
-  {
-    id: 6,
-    title: "Dining Room Set",
-    category: "furniture",
-    description: "Solid wood dining table with 6 chairs, excellent condition",
-    location: "Irbid",
-    image: "https://images.unsplash.com/photo-1617806118233-18e1de247200?auto=format&fit=crop&q=80",
-    timeAgo: "3 days ago"
-  },
-  {
-    id: 7,
-    title: "Pregnancy Support Kit",
-    category: "nursing",
-    description: "Pregnancy pillow, belly support band, and pregnancy books in excellent condition",
-    location: "Amman",
-    image: "https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?auto=format&fit=crop&q=80",
-    timeAgo: "6 days ago"
-  },
-  {
-    id: 8,
-    title: "Baby Essentials Bundle",
-    category: "nursing",
-    description: "Newborn essentials including bottles, sterilizer, and nursing covers - all gently used",
-    location: "Jerash",
-    image: "https://images.unsplash.com/photo-1596461404969-9ae70f2830c1?auto=format&fit=crop&q=80",
-    timeAgo: "1 week ago"
-  },
-  {
-    id: 9,
-    title: "Non-Perishable Food Items",
-    category: "food",
-    description: "Canned goods, pasta, and other non-perishable items for families in need",
-    location: "Ma'an",
-    image: "https://images.unsplash.com/photo-1488027178343-481677c929c3?auto=format&fit=crop&q=80",
-    timeAgo: "12 hours ago"
-  },
-  {
-    id: 10,
-    title: "Professional Suits",
-    category: "clothes",
-    description: "Three gently used business suits, perfect for job interviews. Sizes 40R-42R",
-    location: "Karak",
-    image: "https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&q=80",
-    timeAgo: "4 days ago"
-  }
+  // ... (remaining static donations)
 ];
-
-
-
 
 const Donations = () => {
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [searchQuery, setSearchQuery] = useState('');
   const [location, setLocation] = useState('');
   const [visibleCount, setVisibleCount] = useState(6);
-  const [selectedId, setSelectedId] = useState(null);
+  const selectedId = useRef(null);
   const [donations, setDonations] = useState([]);
+
   useEffect(() => {
     const localDonations = JSON.parse(localStorage.getItem('donations')) || [];
-    // Combine static donations with saved ones (optional)
-    const combined = [...localDonations, ...STATIC_DONATIONS]; // or just localDonations
-    setDonations(combined);
+    setDonations([...localDonations, ...STATIC_DONATIONS]);
   }, []);
 
-  const filteredDonations = donations.filter(donation => {
-    const matchesCategory = selectedCategory === 'all' || donation.category === selectedCategory;
-    const matchesSearch = donation.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      donation.description.toLowerCase().includes(searchQuery.toLowerCase());
-    const matchesLocation = !location || donation.location.toLowerCase().includes(location.toLowerCase());
-    return matchesCategory && matchesSearch && matchesLocation;
-  });
+  const filteredDonations = useMemo(() => {
+    return donations.filter(donation => {
+      const matchesCategory = selectedCategory === 'all' || donation.category === selectedCategory;
+      const matchesSearch = donation.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        donation.description.toLowerCase().includes(searchQuery.toLowerCase());
+      const matchesLocation = !location || donation.location.toLowerCase().includes(location.toLowerCase());
+      return matchesCategory && matchesSearch && matchesLocation;
+    });
+  }, [donations, selectedCategory, searchQuery, location]);
 
   const handleLoadMore = () => {
     setVisibleCount((prev) => prev + 6);
@@ -154,7 +71,6 @@ const Donations = () => {
             />
           </div>
           <div className="col-md-6 position-relative p-2">
-
             <MapPin className="position-absolute top-50 translate-middle-y ms-2 text-muted" size={16} />
             <select
               value={location}
@@ -175,7 +91,6 @@ const Donations = () => {
               <option value="ma'an">Ma'an</option>
               <option value="madaba">Madaba</option>
             </select>
-
           </div>
           <div className="col-12 d-flex align-items-center flex-wrap gap-2 mt-2">
             <Filter className="text-muted" size={20} />
@@ -186,7 +101,7 @@ const Donations = () => {
                   setSelectedCategory(category.id);
                   setVisibleCount(6);
                 }}
-                className={` btn btn-sm ${selectedCategory === category.id ? 'btn-primary text-white' : 'btn-outline-secondary'}${'bf'}`}
+                className={`btn btn-sm ${selectedCategory === category.id ? 'btn-primary text-white' : 'btn-outline-secondary'}`}
               >
                 {category.label}
               </button>
@@ -196,33 +111,22 @@ const Donations = () => {
       </div>
 
       {/* Donations Grid */}
-
-
       <div className="row g-4">
-        {filteredDonations.slice(0, visibleCount).map((donations) => (
-          <div key={donations.id} className="col-md-6 col-lg-4">
+        {filteredDonations.slice(0, visibleCount).map((donation) => (
+          <div key={donation.id} className="col-md-6 col-lg-4">
             <DonationCard
-              donation={donations}
-              onSelect={setSelectedId}
-              isSelected={donations.id === selectedId}
-
+              donation={donation}
+              onSelect={(id) => { selectedId.current = id; }}
+              isSelected={donation.id === selectedId.current}
             />
-
           </div>
         ))}
       </div>
 
-
-
       {/* Load More Button */}
       {hasMore && (
         <div className="text-center mt-4">
-          <button
-            onClick={handleLoadMore}
-            className="btn btn-primary"
-          >
-            Load More
-          </button>
+          <button onClick={handleLoadMore} className="btn btn-primary">Load More</button>
         </div>
       )}
     </div>

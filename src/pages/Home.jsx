@@ -4,12 +4,12 @@ import { Gift, Search, UserPlus } from 'lucide-react';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import StatsCarousel from '../components/StatsCarousel';
-import donateimage2 from '../assets/donateimage2.png';
-import translations from '../translations';
+import donateimage2 from '../assets/donateimage2.webp'; // استخدام WebP بدلاً من الصور الكبيرة
+import translations from '../translations'; // استيراد ملف الترجمة الموحد
 
 const Home = () => {
   const lang = localStorage.getItem('language') || 'en';
-  const t = translations[lang];
+  const t = translations[lang]; // الترجمة بناءً على اللغة المختارة
 
   return (
     <>
@@ -21,7 +21,7 @@ const Home = () => {
           style={{
             width: '100vw',
             height: '100%',
-            backgroundImage: `url(${donateimage2})`,
+            backgroundImage: `url(${donateimage2})`, // تعيين الصورة بتنسيق WebP
             backgroundSize: 'cover',
             backgroundPosition: 'center',
             zIndex: -1,
@@ -38,7 +38,9 @@ const Home = () => {
         <div className="container position-relative z-1">
           <h1 className="display-4 fw-bold text-dark mb-4">
             {lang === 'en' ? 'Share Kindness, ' : 'شارك اللطف، '}
-            <span className="text-warning">{lang === 'en' ? 'Make Impact' : 'وصنع الأثر'}</span>
+            <span className="text-warning">
+              {lang === 'en' ? 'Make Impact' : 'وصنع الأثر'}
+            </span>
           </h1>
           <p className="lead text-dark mb-4 mx-auto" style={{ maxWidth: '600px' }}>
             {lang === 'en'
@@ -84,7 +86,9 @@ const Home = () => {
         <div className="container position-relative z-1">
           <h2 className="display-4 fw-bold text-dark mb-4">
             {lang === 'en' ? 'Ready to Make a ' : 'هل أنت مستعد لترك '}
-            <span className="text-warning">{lang === 'en' ? 'Difference?' : 'أثر؟'}</span>
+            <span className="text-warning">
+              {lang === 'en' ? 'Difference?' : 'أثر؟'}
+            </span>
           </h2>
           <p className="lead text-dark mb-4 mx-auto" style={{ maxWidth: '600px' }}>
             {lang === 'en'
